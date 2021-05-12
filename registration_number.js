@@ -38,6 +38,8 @@ showBtn.addEventListener("click", function () {
 
         let listItems = document.createElement("li")
 
+        let regArray = [];
+
         for (let i = 0; i < regList.length; i++) {
             let getReg = regList[i]
             if (showChecked.value === "malmesbury") {
@@ -50,12 +52,20 @@ showBtn.addEventListener("click", function () {
                 }
             } else if (showChecked.value === "town") {
                 if (getReg.startsWith("ca")) {
-                    listItems.innerHTML = getReg;
+                    // regArray.push(getReg);
+                    console.log(regList[i]);
+                    listItems.innerText = regList[i];
+                    showRegs.appendChild(listItems);
                 }
             }
         }
-        listItems.classList.add("liStyle")
-        showRegs.appendChild(listItems);
+        // for (let i = 0; i < regArray.length; i++) {
+        //     listItems.innerText = regArray[i];
+        // }
+        // console.log(listItems);
+
+        listItems.classList.add("liStyle");
+        // showRegs.appendChild(listItems);
         showChecked.checked = false;
     } else {
         warning.innerHTML = "Please select town";

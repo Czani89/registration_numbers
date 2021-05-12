@@ -5,11 +5,16 @@ body{
 .container{
     margin: 11%;
     background-color: blanchedalmond;
-    padding: 10%;
+    padding: 2% 10% 5% 10%;
     max-width: 768px;
 }
+h1{
+    font-weight: bolder;
+    text-align: center;
+    border: 0.3rem solid black;
+}
 .inputText{
-    margin: 1rem 0;
+    margin: 2rem 0;
     text-align: left;
 }
    .btn, .show{
