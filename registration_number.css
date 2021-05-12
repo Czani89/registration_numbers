@@ -14,7 +14,7 @@ h1{
     border: 0.3rem solid black;
 }
 .inputText{
-    margin: 2rem 0;
+    margin: 2rem 0 1rem 0;
     text-align: left;
 }
    .btn, .show{
@@ -26,7 +26,7 @@ h1{
         clear: both;
        display: flex;
        justify-content: space-between;
-       margin: 1rem 0;
+       margin: 3rem 0 1rem 0;
     }
    
    .regNumbers{
