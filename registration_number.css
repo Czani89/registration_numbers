@@ -1,0 +1,49 @@
+body{
+    margin: auto;
+    background-color: aquamarine;
+}
+.container{
+    margin: 11%;
+    background-color: blanchedalmond;
+    padding: 10%;
+    max-width: 768px;
+}
+.inputText{
+    margin: 1rem 0;
+    text-align: left;
+}
+   .btn, .show{
+       float: right;
+       display: block;
+    
+    }
+    .btnContainer{
+        clear: both;
+       display: flex;
+       justify-content: space-between;
+       margin: 1rem 0;
+    }
+   
+   .regNumbers{
+        clear: right;
+         text-align: center;
+         margin-top: 3rem;
+  }
+  .first, .second{
+      margin-right: .5rem;
+  }
+   
+    .warning{
+        color: red;
+    }
+  
+    .liStyle{
+        list-style: none;
+        margin: auto;
+        border: .3rem solid black;
+        border-radius: .3rem;
+        background-color: yellow;
+        width: 7rem;
+        text-transform: uppercase;
+    }
+    

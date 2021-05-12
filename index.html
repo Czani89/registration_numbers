@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./registration_number.css">
+    <title>Registration Numbers</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="inputText">
+            <label for="text">Registration Number:</label>
+            <input type="text" class="text" name="text" id="text">
+        </div>
+        <div>
+            <span class="warning"></span>
+        </div>
+        <button class="btn">ADD</button>
+        <div class="btnContainer">
+            <div class="first">
+                <input type="radio" name="town" id="first" class="radio" value="malmesbury">
+                <br>
+                <label for="first">Malmesbury</label>
+            </div>
+            <div class="second">
+                <input type="radio" name="town" id="second" class="radio" value="bellville">
+                <br>
+                <label for="second">Bellville</label>
+            </div>
+            <div class="third">
+                <input type="radio" name="town" id="third" class="radio" value="town">
+                <br>
+                <label for="third">Cape Town</label>
+            </div>
+        </div>
+        <button class="show">SHOW</button>
+
+        <div class="regNumbers">
+            <ul class="regs"></ul>
+        </div>
+    </div>
+
+    <script src="./regFactory.js"></script>
+    <script src="./registration_number.js"></script>
+</body>
+
+</html>
