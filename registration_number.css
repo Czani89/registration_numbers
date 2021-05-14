@@ -36,6 +36,7 @@ h1{
         clear: right;
          text-align: center;
          margin-top: 3rem;
+         width: 100%;
   }
   .first, .second{
       margin-right: .5rem;
@@ -44,6 +45,7 @@ h1{
     .warning{
         color: red;
     }
+
   
     .liStyle{
         list-style: none;
