@@ -5,6 +5,7 @@ const showBtn = document.querySelector(".show")
 const selector = document.querySelector(".selector")
 const warning = document.querySelector(".warning")
 const showRegs = document.querySelector(".regs")
+const newSpan = document.querySelector(".regNumbers")
 
 let regObj = {};
 let regArray = []
@@ -57,24 +58,28 @@ showBtn.addEventListener("click", function () {
     let showChecked = document.querySelector("input[name='town']:checked");
     if (showChecked) {
 
-
         for (let i = 0; i < regList.length; i++) {
             let newListItems = document.createElement("span");
             console.log(newListItems);
-            if (showChecked.value === "malmesbury") {
-
-                regArray.push(regList[i].startsWith("CK"))
-                console.log(newListItems.innerHTML);
-                alert("molo");
-                newListItems.innerHTML = regList[i];
-
+            console.log(showChecked.value);
+            console.log(regList[i]);
+            if (showChecked.value === "malmesbury" && regList[i].startsWith("ck")) {
+                // console.log(regList);
+                // alert("aa")
+                regArray.push(regList[i]);
                 console.log(regArray);
-            } else if (showChecked.value === "bellville") {
+                console.log(newListItems.innerHTML);
+                newListItems.innerHTML = regList[i];
+                showRegs.appendChild(newListItems.innerHTML)
+                // console.log(regArray[i]);
+            } else if (showChecked.value === "bellville" && regList[i].startsWith("cy")) {
                 regArray.push(regList[i].startsWith("CY"))
                 newListItems.innerHTML = regList[i];
-            } else if (showChecked.value === "town") {
+                showRegs.appendChild(newListItems.innerHTML)
+            } else if (showChecked.value === "town" && regList[i].startsWith("ca")) {
                 regArray.push(regList[i].startsWith("CA"))
                 newListItems.innerHTML = regList[i];
+                newSpan.appendChild(newListItems.innerHTML)
             }
         }
 
