@@ -4,91 +4,100 @@ const radioBtns = document.querySelector(".radio")
 const showBtn = document.querySelector(".show")
 const selector = document.querySelector(".selector")
 const warning = document.querySelector(".warning")
-const showRegs = document.querySelector(".regs")
-const newSpan = document.querySelector(".regNumbers")
+const displayRegElement = document.querySelector(".regNumbers")
+const reset = document.querySelector('.reset')
+const showAll = document.querySelector('.showAll')
 
-let regObj = {};
+let storedRegNumbers = localStorage["registrationSet"] ? JSON.parse(localStorage.getItem("registrationSet")) : {};
+
 let regArray = []
 
-let regInst = regFactory();
+let regInst = regFactory(storedRegNumbers);
+
 let regex = /^[a-zA-Z]{2}\s(\d{5}$|\d{3}$)/;
 let regEx = /^[a-zA-Z]{2}\s\d{3}(-\d{3}$|\s[a-zA-Z]{2}$)/;
 
-if (localStorage["registrationSet"]) {
-    regObj = JSON.parse(localStorage.getItem("registrationSet"));
-}
-let regList = Object.keys(regObj);
-console.log(regList.length);
-
-
+window.addEventListener('load', (event) => {
+    let filteredReg = regInst.filterRegNumbers();
+    displayReg(filteredReg);
+});
 addBtn.addEventListener("click", function () {
 
     let regNumber = textBox.value;
     let lowerReg = regNumber.toLowerCase();
     // check regular expressions
     if (regex.test(regNumber) || regEx.test(regNumber)) {
-        regInst.setReg(regNumber);
         // check towns and creating HTML tags and setting text in tags
         if (lowerReg.startsWith("ck") || lowerReg.startsWith("cy") || lowerReg.startsWith("ca")) {
-            let listItems = document.createElement("span");
-            listItems.innerHTML = regInst.newReg();
+            let newSpan = createSpan();
+
+            regInst.addRegNumbers(regNumber)
+            newSpan.innerHTML = regInst.getRegNumber();
 
             localStorage.setItem("registrationSet", JSON.stringify(regInst.newContainer()));
-            //check if reg number already exists and appending dynamic tags to ul
-            if (regObj[regInst.newReg()] !== undefined) {
-                warning.innerHTML = "Registration number already exists";
-                setTimeout(function () { warning.innerHTML = "" }, 5000);
+            if (localStorage["registrationSet"]) {
+                storedRegNumbers = JSON.parse(localStorage.getItem("registrationSet"));
+            }
+            if (storedRegNumbers[lowerReg] > 0) {
+                showErrors("Registration number already exists");
             } else {
-                showRegs.appendChild(listItems);
-                listItems.classList.add("liStyle");
+                displayRegElement.appendChild(newSpan);
             }
         } else {
-            warning.innerHTML = "Please enter registration number from towns given below."
-            setTimeout(function () { warning.innerHTML = "" }, 5000);
+            showErrors("Please enter registration number from towns given below.");
         }
     }
     else {
-        warning.innerHTML = "Please enter valid registration number"
-        setTimeout(function () { warning.innerHTML = "" }, 5000);
+        showErrors("Please enter valid registration number");
     }
     textBox.value = "";
 })
 
 showBtn.addEventListener("click", function () {
+    displayRegElement.innerHTML = "";
     let showChecked = document.querySelector("input[name='town']:checked");
     if (showChecked) {
-
-        for (let i = 0; i < regList.length; i++) {
-            let newListItems = document.createElement("span");
-            console.log(newListItems);
-            console.log(showChecked.value);
-            console.log(regList[i]);
-            if (showChecked.value === "malmesbury" && regList[i].startsWith("ck")) {
-                // console.log(regList);
-                // alert("aa")
-                regArray.push(regList[i]);
-                console.log(regArray);
-                console.log(newListItems.innerHTML);
-                newListItems.innerHTML = regList[i];
-                showRegs.appendChild(newListItems.innerHTML)
-                // console.log(regArray[i]);
-            } else if (showChecked.value === "bellville" && regList[i].startsWith("cy")) {
-                regArray.push(regList[i].startsWith("CY"))
-                newListItems.innerHTML = regList[i];
-                showRegs.appendChild(newListItems.innerHTML)
-            } else if (showChecked.value === "town" && regList[i].startsWith("ca")) {
-                regArray.push(regList[i].startsWith("CA"))
-                newListItems.innerHTML = regList[i];
-                newSpan.appendChild(newListItems.innerHTML)
-            }
-        }
-
+        let filteredReg = regInst.filterRegNumbers(showChecked.value)
+        displayReg(filteredReg);
     } else {
-        warning.innerHTML = "Please select town";
-        setTimeout(function () { warning.innerHTML = "" }, 5000);
+        showErrors("Please select town")
     }
     showChecked.checked = false;
+});
 
-
+reset.addEventListener("click", function () {
+    location.reload();
+    localStorage.clear();
 })
+showAll.addEventListener('click', function () {
+    let spanClear = document.querySelector(".regNumbers")
+    console.log(spanClear.children);
+    for (let i = 0; i < spanClear.length; i++) {
+        spanClear.parentNode.removeChild(spanClear);
+    }
+    displayReg(regInst.regArrayList());
+})
+
+function createSpan() {
+    let newSpan = document.createElement("span");
+    newSpan.classList.add("liStyle");
+    return newSpan;
+}
+
+function displayReg(filteredReg) {
+
+    for (let i = 0; i < filteredReg.length; i++) {
+        let newSpan = createSpan();
+        const reg = filteredReg[i];
+        newSpan.innerHTML = reg;
+        displayRegElement.appendChild(newSpan);
+    }
+}
+
+function showErrors(errorMessage) {
+    warning.innerHTML = errorMessage;
+    setTimeout(function () { warning.innerHTML = "" }, 5000);
+}
+
+
 

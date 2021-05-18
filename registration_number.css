@@ -17,11 +17,14 @@ h1{
     margin: 2rem 0 1rem 0;
     text-align: left;
 }
-   .btn, .show{
+   .btn{
        float: right;
        display: block;
-    
     }
+   .btns{
+       display: flex;
+       justify-content: space-between;
+   }
     .btnContainer{
         clear: both;
        display: flex;
@@ -53,7 +56,8 @@ h1{
         border: .3rem solid black;
         border-radius: .3rem;
         background-color: yellow;
-        width: 7rem;
+        width: 5rem;
         text-transform: uppercase;
+        display: inline-block;
     }
     
