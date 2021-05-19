@@ -29,7 +29,7 @@ h1{
         clear: both;
        display: flex;
        justify-content: space-between;
-       margin: 3rem 0 1rem 0;
+       margin: 3rem 0 2rem 0;
     }
     .radio{
         text-align: center;
@@ -38,7 +38,7 @@ h1{
    .regNumbers{
         clear: right;
          text-align: center;
-         margin-top: 3rem;
+         margin-top: 2rem;
          width: 100%;
   }
   .first, .second{
