@@ -15,7 +15,7 @@ let regArray = []
 let regInst = regFactory(storedRegNumbers);
 
 let regex = /^[a-zA-Z]{2}\s(\d{5}$|\d{3}$)/;
-let regEx = /^[a-zA-Z]{2}\s\d{3}(-\d{3}$|\s[a-zA-Z]{2}$)/;
+let regEx = /^[a-zA-Z]{2}\s\d{3}(-\d{3}$|\s\d{3}$)/;
 
 window.addEventListener('load', (event) => {
     let filteredReg = regInst.filterRegNumbers();
@@ -24,11 +24,11 @@ window.addEventListener('load', (event) => {
 addBtn.addEventListener("click", function () {
 
     let regNumber = textBox.value;
-    let lowerReg = regNumber.toLowerCase();
+    let lowerReg = regNumber.toUpperCase();
     // check regular expressions
     if (regex.test(regNumber) || regEx.test(regNumber)) {
         // check towns and creating HTML tags and setting text in tags
-        if (lowerReg.startsWith("ck") || lowerReg.startsWith("cy") || lowerReg.startsWith("ca")) {
+        if (lowerReg.startsWith("CK") || lowerReg.startsWith("CY") || lowerReg.startsWith("CA")) {
             let newSpan = createSpan();
 
             regInst.addRegNumbers(regNumber)
@@ -71,11 +71,11 @@ reset.addEventListener("click", function () {
 })
 showAll.addEventListener('click', function () {
     let spanClear = document.querySelector(".regNumbers")
-    console.log(spanClear.children);
-    for (let i = 0; i < spanClear.length; i++) {
-        spanClear.parentNode.removeChild(spanClear);
+    let spanChild = spanClear.children
+    for (let i = (spanChild.length -1); i >= 0; i--) {
+        spanClear.removeChild(spanChild[i]);
     }
-    displayReg(regInst.regArrayList());
+    displayReg(regInst.regArrayList())
 })
 
 function createSpan() {
@@ -90,7 +90,7 @@ function displayReg(filteredReg) {
         let newSpan = createSpan();
         const reg = filteredReg[i];
         newSpan.innerHTML = reg;
-        displayRegElement.appendChild(newSpan);
+        displayRegElement.append(newSpan);
     }
 }
 

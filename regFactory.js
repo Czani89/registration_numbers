@@ -2,8 +2,10 @@ function regFactory(storedRegNumbers) {
     let regContainer = storedRegNumbers;
     let regName;
     let regObjList;
+    let regNumber;
 
-    function addRegNumbers(regNumber) {
+    function addRegNumbers(regNumber1) {
+        regNumber = regNumber1.toUpperCase();
         if (regContainer[regNumber] === undefined) {
             regContainer[regNumber] = 0;
             regName = regNumber;
@@ -42,3 +44,4 @@ function regFactory(storedRegNumbers) {
     }
 
 }
+
