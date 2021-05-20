@@ -4,16 +4,7 @@ function regFactory(storedRegNumbers) {
     let regObjList;
     let regNumber;
 
-    let regex = /^([a-zA-Z]{2}\s(\d{5}$|\d{3}$))|^([a-zA-Z]{2}\s\d{3}(-\d{3}$|\s\d{3}$))/;
 
-    function regexCheck(reg) {
-        if (reg.startsWith("CK") || reg.startsWith("CY") || reg.startsWith("CA")) {
-            let regCheck = regex.test(reg)
-            return regCheck
-        } else {
-            return "You've entered an incorrect registration number format!"
-        }
-    }
 
     function addRegNumbers(regNumber1) {
         regNumber = regNumber1.toUpperCase();
@@ -22,7 +13,6 @@ function regFactory(storedRegNumbers) {
             regName = regNumber;
         } else {
             regContainer[regNumber]++;
-            return "Registration number already exists!"
         }
     }
 
@@ -53,7 +43,7 @@ function regFactory(storedRegNumbers) {
         filterRegNumbers,
         newContainer,
         regArrayList,
-        regexCheck
+
     }
 }
 
