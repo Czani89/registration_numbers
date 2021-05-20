@@ -1,12 +1,15 @@
-function regFactory(storedRegNumbers) {
-    let regContainer = storedRegNumbers;
+function regFactory() {
+    let regContainer;
     let regName;
     let regObjList;
     let regNumber;
+    let townArray
+ 
 
     let regex = /^([a-zA-Z]{2}\s(\d{5}$|\d{3}$))|^([a-zA-Z]{2}\s\d{3}(-\d{3}$|\s\d{3}$))/;
 
-    function regexCheck(reg) {
+    function regexCheck(regEntered) {
+        let reg = regEntered.toUpperCase()
         if (reg.startsWith("CK") || reg.startsWith("CY") || reg.startsWith("CA")) {
             let regCheck = regex.test(reg)
             return regCheck
@@ -17,17 +20,14 @@ function regFactory(storedRegNumbers) {
 
     function addRegNumbers(regNumber1) {
         regNumber = regNumber1.toUpperCase();
-        if (regContainer[regNumber] === undefined) {
-            regContainer[regNumber] = 0;
+        if (regContainer[regNumber] === "undefined") {
             regName = regNumber;
+            regContainer[regNumber] = 0;
+            return regContainer
         } else {
             regContainer[regNumber]++;
             return "Registration number already exists!"
         }
-    }
-
-    function getRegNumber() {
-        return regName;
     }
 
     function newContainer() {
@@ -41,14 +41,16 @@ function regFactory(storedRegNumbers) {
 
     function filterRegNumbers(townTag) {
         if (townTag === undefined) {
+            
             return Object.keys(regContainer);
         }
+        townArray = regArrayList().filter((reg) => reg.toUpperCase().startsWith(townTag))
 
-        return regArrayList().filter((reg) => reg.toUpperCase().startsWith(townTag))
+        return townArray
     }
 
     return {
-        getRegNumber,
+        regexCheck,
         addRegNumbers,
         filterRegNumbers,
         newContainer,
