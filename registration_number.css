@@ -14,8 +14,13 @@ h1{
     border: 0.3rem solid black;
 }
 p{
-    color: rgb(107, 104, 104);
+    color: black;
     text-align: center;
+    background-color: yellow;
+    border: .2rem solid black;
+}
+.regFormat{
+    color: rgb(107, 104, 104);
 }
 .inputText{
     margin: 2rem 0 1rem 0;
