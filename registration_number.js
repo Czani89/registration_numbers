@@ -84,7 +84,6 @@ function createSpan() {
 }
 
 function displayReg(filteredReg) {
-
     for (let i = 0; i < filteredReg.length; i++) {
         let newSpan = createSpan();
         const reg = filteredReg[i];
