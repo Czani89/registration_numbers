@@ -26,10 +26,8 @@ addBtn.addEventListener("click", function () {
     if (regex.test(regNumber)) {
         // check towns and creating HTML tags and setting text in tags
         if (lowerReg.startsWith("CK") || lowerReg.startsWith("CY") || lowerReg.startsWith("CA")) {
-            let newSpan = createSpan();
 
             regInst.addRegNumbers(regNumber)
-            newSpan.innerHTML = regInst.getRegNumber();
 
             localStorage.setItem("registrationSet", JSON.stringify(regInst.newContainer()));
 
