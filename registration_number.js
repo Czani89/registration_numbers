@@ -11,9 +11,7 @@ const showAll = document.querySelector('.showAll')
 let storedRegNumbers = localStorage["registrationSet"] ? JSON.parse(localStorage.getItem("registrationSet")) : {};
 
 let regArray = []
-
 let regInst = regFactory(storedRegNumbers);
-
 let regex = /^([a-zA-Z]{2}\s(\d{5}$|\d{3}$))|^([a-zA-Z]{2}\s\d{3}(-\d{3}$|\s\d{3}$))/;
 
 window.addEventListener('load', (event) => {
@@ -34,13 +32,14 @@ addBtn.addEventListener("click", function () {
             newSpan.innerHTML = regInst.getRegNumber();
 
             localStorage.setItem("registrationSet", JSON.stringify(regInst.newContainer()));
+
             if (localStorage["registrationSet"]) {
                 storedRegNumbers = JSON.parse(localStorage.getItem("registrationSet"));
             }
             if (storedRegNumbers[lowerReg] > 0) {
                 showErrors("Registration number already exists");
             } else {
-                displayRegElement.appendChild(newSpan);
+                showAllReg()
             }
         } else {
             showErrors("Please enter registration number from towns given below.");
@@ -69,18 +68,21 @@ reset.addEventListener("click", function () {
     localStorage.clear();
 })
 showAll.addEventListener('click', function () {
-    let spanClear = document.querySelector(".regNumbers")
-    let spanChild = spanClear.children
-    for (let i = (spanChild.length - 1); i >= 0; i--) {
-        spanClear.removeChild(spanChild[i]);
-    }
-    displayReg(regInst.regArrayList())
+    showAllReg()
 })
 
 function createSpan() {
     let newSpan = document.createElement("span");
     newSpan.classList.add("liStyle");
     return newSpan;
+}
+function showAllReg() {
+    let spanClear = document.querySelector(".regNumbers")
+    let spanChild = spanClear.children
+    for (let i = (spanChild.length - 1); i >= 0; i--) {
+        spanClear.removeChild(spanChild[i]);
+    }
+    displayReg(regInst.regArrayList())
 }
 
 function displayReg(filteredReg) {
