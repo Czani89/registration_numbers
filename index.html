@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,56 +10,123 @@
     <title>Registration Numbers</title>
 </head>
 
+<header>
+    <script type="text/x-template" class="textTemplate">
+    {{#each reg}}
+        <span class="liStyle1">{{this}}<spn>
+        {{/each}}
+    
+    </script>
+</header>
+
 <body>
-    <div class="container">
+    <div class="regContainer">
+        <section class="vanillaDom">
+            <div class="container">
 
-        <h1>REGISTRATION NUMBER</h1>
+                <h1>REGISTRATION NUMBER</h1>
 
-        <p>Please enter registration numbers in the following formats: <br> <span class="regFormats"> CA 123; CA 12345;
-                CA 123 123; CA 123-456</span></p>
+                <p>Please enter registration numbers in the following formats: <br> <span class="regFormats"> CA 123; CA
+                        12345;
+                        CA 123 123; CA 123-456</span></p>
 
-        <div class="inputText">
-            <label for="text">Registration Number:</label>
-            <input type="text" class="text" name="text" id="text" placeholder="Enter registration number">
-        </div>
-        <div>
-            <span class="warning"></span>
-        </div>
-        <button class="btn">ADD</button>
-        <div class="btnContainer">
-            <div class="first">
-                <input type="radio" name="town" id="first" class="radio" value="CK">
+                <div class="inputText">
+                    <label for="text">Registration Number:</label>
+                    <input type="text" class="text" name="text" id="text" placeholder="Enter registration number">
+                </div>
+                <div>
+                    <span class="warning"></span>
+                </div>
+                <button class="btn">ADD</button>
+                <div class="btnContainer">
+                    <div class="first">
+                        <input type="radio" name="town" id="first" class="radio" value="CK">
 
-                <label for="first">Malmesbury (CK)</label>
+                        <label for="first">Malmesbury (CK)</label>
+                    </div>
+                    <div class="second">
+                        <input type="radio" name="town" id="second" class="radio" value="CY">
+
+                        <label for="second">Bellville (CY)</label>
+                    </div>
+                    <div class="third">
+                        <input type="radio" name="town" id="third" class="radio" value="CA">
+
+                        <label for="third">Cape Town (CA)</label>
+                    </div>
+                </div>
+                <div class="btns">
+                    <div class="showDiv">
+                        <button class="show">SHOW</button>
+                    </div>
+                    <div class="showAllDiv">
+                        <button class="showAll">Show All</button>
+                    </div>
+                    <div class="resetDiv">
+                        <button class="reset">Reset</button>
+                    </div>
+                </div>
+                <div class="regNumbers">
+
+                </div>
             </div>
-            <div class="second">
-                <input type="radio" name="town" id="second" class="radio" value="CY">
+        </section>
+        <section class="templateDom">
+            <div class="container1">
 
-                <label for="second">Bellville (CY)</label>
-            </div>
-            <div class="third">
-                <input type="radio" name="town" id="third" class="radio" value="CA">
+                <h1>REGISTRATION NUMBER</h1>
 
-                <label for="third">Cape Town (CA)</label>
-            </div>
-        </div>
-        <div class="btns">
-            <div class="showDiv">
-                <button class="show">SHOW</button>
-            </div>
-            <div class="showAllDiv">
-                <button class="showAll">Show All</button>
-            </div>
-            <div class="resetDiv">
-                <button class="reset">Reset</button>
-            </div>
-        </div>
-        <div class="regNumbers">
+                <p>Please enter registration numbers in the following formats: <br> <span class="regFormats1"> CA 123;
+                        CA
+                        12345;
+                        CA 123 123; CA 123-456</span></p>
 
-        </div>
+                <div class="inputText1">
+                    <label for="text1">Registration Number:</label>
+                    <input type="text" class="text1" name="text1" id="text1" placeholder="Enter registration number">
+                </div>
+                <div>
+                    <span class="warning1"></span>
+                </div>
+                <button class="btn1">ADD</button>
+                <div class="btnContainer1">
+                    <div class="first1">
+                        <input type="radio" name="town1" id="first1" class="radio1" value="CK">
+
+                        <label for="first1">Malmesbury (CK)</label>
+                    </div>
+                    <div class="second1">
+                        <input type="radio" name="town1" id="second1" class="radio1" value="CY">
+
+                        <label for="second1">Bellville (CY)</label>
+                    </div>
+                    <div class="third1">
+                        <input type="radio" name="town1" id="third1" class="radio1" value="CA">
+
+                        <label for="third1">Cape Town (CA)</label>
+                    </div>
+                </div>
+                <div class="btns1">
+                    <div class="showDiv1">
+                        <button class="show1">SHOW</button>
+                    </div>
+                    <div class="showAllDiv1">
+                        <button class="showAll1">Show All</button>
+                    </div>
+                    <div class="resetDiv1">
+                        <button class="reset1">Reset</button>
+                    </div>
+                </div>
+                <div class="regNumbers1">
+
+                </div>
+            </div>
+
+        </section>
     </div>
 
     <script src="./regFactory.js"></script>
+    <!-- <script src="./regTemplate.js"></script> -->
     <script src="./registration_number.js"></script>
 </body>
 

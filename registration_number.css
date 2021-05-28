@@ -2,8 +2,18 @@ body{
     margin: auto;
     background-color: aquamarine;
 }
+.regContainer{
+    display: flex;
+    justify-content:space-evenly;
+
+}
+.vanillaDom .templateDom{
+margin: 4rem;
+/* margin: auto; */
+
+}
 .container{
-    margin: 11%;
+    margin: 3%;
     background-color: blanchedalmond;
     padding: 2% 10% 5% 10%;
     max-width: 768px;
@@ -58,6 +68,10 @@ p{
         color: red;
     }
 
+    .error{
+        color: green;
+    }
+
   
     .liStyle{
         list-style: none;
@@ -69,4 +83,84 @@ p{
         text-transform: uppercase;
         display: inline-block;
     }
+    /* overall container style */
+    @media(max-width: 425px){
+        .regContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+
+}
+    }
     
+/* regTemplate css */
+.container1{
+    margin: 3%;
+    background-color: blanchedalmond;
+    padding: 2% 10% 5% 10%;
+    max-width: 768px;
+}
+h1{
+    font-weight: bolder;
+    text-align: center;
+    border: 0.3rem solid black;
+}
+p{
+    color: black;
+    text-align: center;
+    background-color: yellow;
+    border: .2rem solid black;
+}
+.regFormat1{
+    color: rgb(107, 104, 104);
+}
+.inputText1{
+    margin: 2rem 0 1rem 0;
+    text-align: left;
+}
+   .btn1{
+       float: left;
+       display: block;
+    }
+   .btns1{
+       display: flex;
+       justify-content: space-between;
+   }
+    .btnContainer1{
+        clear: both;
+       display: flex;
+       justify-content: space-between;
+       margin: 3.5rem 0rem 3rem 0;
+    }
+    .radio1{
+        text-align: center;
+    }
+   
+   .regNumbers1{
+        clear: right;
+         text-align: center;
+         margin-top: 2rem;
+         width: 100%;
+  }
+  .first1, .second1{
+      margin-right: .5rem;
+  }
+   
+    .warning1{
+        color: red;
+    }
+    .error1{
+        color: green;
+    }
+
+  
+    .liStyle1{
+        list-style: none;
+        margin: auto;
+        border: .3rem solid black;
+        border-radius: .3rem;
+        background-color: yellow;
+        width: 5rem;
+        text-transform: uppercase;
+        display: inline-block;
+    }
