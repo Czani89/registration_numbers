@@ -138,7 +138,7 @@ const regTemplate = document.querySelector(".textTemplate").innerHTML;
 let tempCompile = Handlebars.compile(regTemplate);
 
 //
-let storedRegNumbers1 = localStorage["registrationSet"] ? JSON.parse(localStorage.getItem("registrationSet")) : {};
+let storedRegNumbers1 = localStorage["registrationSetTemp"] ? JSON.parse(localStorage.getItem("registrationSetTemp")) : {};
 
 let regArray1 = []
 let regInst1 = regFactory(storedRegNumbers1);
@@ -158,7 +158,7 @@ addBtn1.addEventListener("click", function () {
         if (lowerReg1.startsWith("CK") || lowerReg1.startsWith("CY") || lowerReg1.startsWith("CA")) {
 
             regInst1.addRegNumbers(lowerReg1)
-            localStorage.setItem("registrationSet", JSON.stringify(regInst1.newContainer()));
+            localStorage.setItem("registrationSetTemp", JSON.stringify(regInst1.newContainer()));
 
             if (storedRegNumbers1[lowerReg1] > 0) {
                 showErrors1("Registration number already exists");
