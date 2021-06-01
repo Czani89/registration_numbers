@@ -70,9 +70,16 @@ showBtn.addEventListener("click", function () {
 reset.addEventListener("click", function () {
     localStorage.clear();
     showWarning("Registration numbers have been succefully cleared.")
+    localStorage.removeItem("registrationSet");
+
+    let spanClear = document.querySelector(".regNumbers")
+    let spanChild = spanClear.children
+    for (let i = (spanChild.length - 1); i >= 0; i--) {
+        spanClear.removeChild(spanChild[i]);
+    }
+
     setTimeout(function () {
         warning.innerHTML = ""
-        location.reload();
     }, 5000);
 })
 
@@ -197,17 +204,24 @@ showBtn1.addEventListener("click", function () {
 reset1.addEventListener("click", function () {
     localStorage.clear();
     showWarning1("Registration numbers have been succefully cleared.")
+    localStorage.removeItem("registrationSetTemp");
+
+    let spanClear = document.querySelector(".regNumbers1")
+    let spanChild = spanClear.children
+    for (let i = (spanChild.length - 1); i >= 0; i--) {
+        spanClear.removeChild(spanChild[i]);
+    }
+
     setTimeout(function () {
-        warning1.innerHTML = ""
-        location.reload();
+        warning1.innerHTML = "";
     }, 5000);
 })
 
 showAll1.addEventListener('click', function () {
     if (regInst.regArrayList().length > 0) {
-        showAllReg1()
+        showAllReg1();
     } else {
-        showErrors1("No registration have yet been entered.")
+        showErrors1("No registration have yet been entered.");
     }
 })
 
