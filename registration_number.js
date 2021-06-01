@@ -68,7 +68,7 @@ showBtn.addEventListener("click", function () {
 });
 
 reset.addEventListener("click", function () {
-    localStorage.clear();
+    // localStorage.clear();
     showWarning("Registration numbers have been succefully cleared.")
     localStorage.removeItem("registrationSet");
 
@@ -77,7 +77,6 @@ reset.addEventListener("click", function () {
     for (let i = (spanChild.length - 1); i >= 0; i--) {
         spanClear.removeChild(spanChild[i]);
     }
-
     setTimeout(function () {
         warning.innerHTML = ""
     }, 5000);
@@ -202,7 +201,7 @@ showBtn1.addEventListener("click", function () {
 });
 
 reset1.addEventListener("click", function () {
-    localStorage.clear();
+    // localStorage.clear();
     showWarning1("Registration numbers have been succefully cleared.")
     localStorage.removeItem("registrationSetTemp");
 
