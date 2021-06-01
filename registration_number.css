@@ -64,7 +64,7 @@ p{
       margin-right: .5rem;
   }
    
-    .warning{
+    .warn{
         color: red;
     }
 
@@ -146,7 +146,7 @@ p{
       margin-right: .5rem;
   }
    
-    .warning1{
+    .warn1{
         color: red;
     }
     .error1{
@@ -154,7 +154,7 @@ p{
     }
 
   
-    .liStyle1{
+    .regNumbers1 span{
         list-style: none;
         margin: auto;
         border: .3rem solid black;

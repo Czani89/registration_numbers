@@ -12,10 +12,7 @@
 
 <header>
     <script type="text/x-template" class="textTemplate">
-    {{#each reg}}
-        <span class="liStyle1">{{this}}<spn>
-        {{/each}}
-    
+    {{#each regies}}<span>{{this}}</span>{{/each}}
     </script>
 </header>
 
@@ -35,24 +32,24 @@
                     <input type="text" class="text" name="text" id="text" placeholder="Enter registration number">
                 </div>
                 <div>
-                    <span class="warning"></span>
+                    <span class="warning warn"></span>
                 </div>
                 <button class="btn">ADD</button>
                 <div class="btnContainer">
                     <div class="first">
                         <input type="radio" name="town" id="first" class="radio" value="CK">
 
-                        <label for="first">Malmesbury (CK)</label>
+                        <label for="first">Malmesbury <br>(CK)</label>
                     </div>
                     <div class="second">
                         <input type="radio" name="town" id="second" class="radio" value="CY">
 
-                        <label for="second">Bellville (CY)</label>
+                        <label for="second">Bellville <br>(CY)</label>
                     </div>
                     <div class="third">
                         <input type="radio" name="town" id="third" class="radio" value="CA">
 
-                        <label for="third">Cape Town (CA)</label>
+                        <label for="third">Cape Town <br>(CA)</label>
                     </div>
                 </div>
                 <div class="btns">
@@ -93,17 +90,17 @@
                     <div class="first1">
                         <input type="radio" name="town1" id="first1" class="radio1" value="CK">
 
-                        <label for="first1">Malmesbury (CK)</label>
+                        <label for="first1">Malmesbury <br>(CK)</label>
                     </div>
                     <div class="second1">
                         <input type="radio" name="town1" id="second1" class="radio1" value="CY">
 
-                        <label for="second1">Bellville (CY)</label>
+                        <label for="second1">Bellville <br>(CY)</label>
                     </div>
                     <div class="third1">
                         <input type="radio" name="town1" id="third1" class="radio1" value="CA">
 
-                        <label for="third1">Cape Town (CA)</label>
+                        <label for="third1">Cape Town <br>(CA)</label>
                     </div>
                 </div>
                 <div class="btns1">
@@ -117,9 +114,7 @@
                         <button class="reset1">Reset</button>
                     </div>
                 </div>
-                <div class="regNumbers1">
-
-                </div>
+                <div class="regNumbers1"></div>
             </div>
 
         </section>

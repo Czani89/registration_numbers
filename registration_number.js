@@ -17,6 +17,7 @@ let regex = /^([a-zA-Z]{2}\s(\d{5}$|\d{3}$))|^([a-zA-Z]{2}\s\d{3}(-\d{3}$|\s\d{3
 
 window.addEventListener('load', (event) => {
     let filteredReg = regInst.filterRegNumbers();
+    console.log(filteredReg);
     displayReg(filteredReg);
 });
 addBtn.addEventListener("click", function () {
@@ -32,13 +33,12 @@ addBtn.addEventListener("click", function () {
 
             localStorage.setItem("registrationSet", JSON.stringify(regInst.newContainer()));
 
-            if (localStorage["registrationSet"]) {
-                storedRegNumbers = JSON.parse(localStorage.getItem("registrationSet"));
-            }
             if (storedRegNumbers[lowerReg] > 0) {
                 showErrors("Registration number already exists");
             } else {
                 showAllReg()
+                showWarning("Registration number has been succefully entered.");
+                setTimeout(function () { warning.innerHTML = "" }, 5000);
             }
         } else {
             showErrors("Please enter registration number from towns given below.");
@@ -55,7 +55,12 @@ showBtn.addEventListener("click", function () {
     let showChecked = document.querySelector("input[name='town']:checked");
     if (showChecked) {
         let filteredReg = regInst.filterRegNumbers(showChecked.value)
-        displayReg(filteredReg);
+        if (filteredReg.length > 0) {
+            displayReg(filteredReg);
+        } else {
+            showWarning("No registration number for this town has been entered yet.");
+            setTimeout(function () { warning.innerHTML = "" }, 5000);
+        }
     } else {
         showErrors("Please select town")
     }
@@ -63,13 +68,17 @@ showBtn.addEventListener("click", function () {
 });
 
 reset.addEventListener("click", function () {
-    location.reload();
     localStorage.clear();
+    showWarning("Registration numbers have been succefully cleared.")
+    setTimeout(function () {
+        warning.innerHTML = ""
+        location.reload();
+    }, 5000);
 })
 
 showAll.addEventListener('click', function () {
-    let showArr = Object.keys(storedRegNumbers)
-    if (showArr.length > 0) {
+
+    if (regInst.regArrayList().length > 0) {
         showAllReg()
     } else {
         showErrors("No registration have yet been entered.")
@@ -101,10 +110,16 @@ function displayReg(filteredReg) {
 
 function showErrors(errorMessage) {
     warning.innerHTML = errorMessage;
+    warning.classList.remove("error")
+    warning.classList.add("warn")
     setTimeout(function () { warning.innerHTML = "" }, 5000);
 }
 
-
+function showWarning(errorMessage) {
+    warning.classList.remove("warn")
+    warning.classList.add("error")
+    warning.innerHTML = errorMessage;
+}
 // start of template reg
 
 const textBox1 = document.querySelector(".text1");
@@ -143,16 +158,14 @@ addBtn1.addEventListener("click", function () {
         if (lowerReg1.startsWith("CK") || lowerReg1.startsWith("CY") || lowerReg1.startsWith("CA")) {
 
             regInst1.addRegNumbers(lowerReg1)
-            console.log(lowerReg1);
             localStorage.setItem("registrationSet", JSON.stringify(regInst1.newContainer()));
 
-            if (localStorage["registrationSet"]) {
-                storedRegNumbers1 = JSON.parse(localStorage.getItem("registrationSet"));
-            }
             if (storedRegNumbers1[lowerReg1] > 0) {
                 showErrors1("Registration number already exists");
             } else {
                 showAllReg1()
+                showWarning1("Registration number has been succefully entered.");
+                setTimeout(function () { warning1.innerHTML = "" }, 5000);
             }
         } else {
             showErrors1("Please enter registration number from towns given below.");
@@ -169,7 +182,12 @@ showBtn1.addEventListener("click", function () {
     let showChecked1 = document.querySelector("input[name='town1']:checked");
     if (showChecked1) {
         let filteredReg = regInst1.filterRegNumbers(showChecked1.value)
-        displayReg1(filteredReg);
+        if (filteredReg.length > 0) {
+            displayReg1(filteredReg)
+        } else {
+            showWarning1("No registration number for this town has been entered yet.")
+            setTimeout(function () { warning1.innerHTML = "" }, 5000);
+        }
     } else {
         showErrors1("Please select town")
     }
@@ -177,24 +195,22 @@ showBtn1.addEventListener("click", function () {
 });
 
 reset1.addEventListener("click", function () {
-    location.reload();
     localStorage.clear();
+    showWarning1("Registration numbers have been succefully cleared.")
+    setTimeout(function () {
+        warning1.innerHTML = ""
+        location.reload();
+    }, 5000);
 })
 
 showAll1.addEventListener('click', function () {
-    let showArr = Object.keys(storedRegNumbers1)
-    if (showArr.length > 0) {
+    if (regInst.regArrayList().length > 0) {
         showAllReg1()
     } else {
         showErrors1("No registration have yet been entered.")
     }
 })
 
-// function createSpan() {
-//     let newSpan1 = document.createElement("span");
-//     newSpan1.classList.add("liStyle1");
-//     return newSpan1;
-// }
 function showAllReg1() {
     displayRegElement1.innerHTML = "";
     displayReg1(regInst1.regArrayList());
@@ -202,11 +218,18 @@ function showAllReg1() {
 
 function displayReg1(filteredReg) {
     displayRegElement1.innerHTML = "";
-    displayRegElement1.innerHTML = tempCompile({ reg: filteredReg });
+    displayRegElement1.innerHTML = tempCompile({ regies: filteredReg });
 }
-
 
 function showErrors1(errorMessage) {
     warning1.innerHTML = errorMessage;
+    warning1.classList.remove("error1")
+    warning1.classList.add("warn1")
     setTimeout(function () { warning1.innerHTML = "" }, 5000);
+}
+
+function showWarning1(errorMessage) {
+    warning1.classList.remove("warn1")
+    warning1.classList.add("error1")
+    warning1.innerHTML = errorMessage;
 }

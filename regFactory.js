@@ -35,6 +35,7 @@ function regFactory(storedRegNumbers) {
         }
 
         return regArrayList().filter((reg) => reg.toUpperCase().startsWith(townTag))
+
     }
 
     return {
