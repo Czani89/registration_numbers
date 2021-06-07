@@ -11,42 +11,32 @@ const showAll = document.querySelector('.showAll')
 
 let storedRegNumbers = localStorage["registrationSet"] ? JSON.parse(localStorage.getItem("registrationSet")) : {};
 
-let regArray = []
 let regInst = regFactory(storedRegNumbers);
-let regex = /^([a-zA-Z]{2}\s(\d{5}$|\d{3}$))|^([a-zA-Z]{2}\s\d{3}(-\d{3}$|\s\d{3}$))/;
 
 window.addEventListener('load', (event) => {
     let filteredReg = regInst.filterRegNumbers();
-    console.log(filteredReg);
     displayReg(filteredReg);
 });
 addBtn.addEventListener("click", function () {
 
     let regNumber = textBox.value;
     let lowerReg = regNumber.toUpperCase();
-    // check regular expressions
-    if (regex.test(regNumber)) {
-        // check towns and creating HTML tags and setting text in tags
-        if (lowerReg.startsWith("CK") || lowerReg.startsWith("CY") || lowerReg.startsWith("CA")) {
 
-            regInst.addRegNumbers(regNumber)
+    if (regInst.addRegNumbers(lowerReg)) {
+        
+        localStorage.setItem("registrationSet", JSON.stringify(regInst.newContainer()));
 
-            localStorage.setItem("registrationSet", JSON.stringify(regInst.newContainer()));
-
-            if (storedRegNumbers[lowerReg] > 0) {
-                showErrors("Registration number already exists");
-            } else {
-                showAllReg()
-                showWarning("Registration number has been succefully entered.");
-                setTimeout(function () { warning.innerHTML = "" }, 5000);
-            }
+        if (storedRegNumbers[lowerReg] > 0) {
+            showErrors("Registration number already exists");
         } else {
-            showErrors("Please enter registration number from towns given below.");
+            showAllReg()
+            showWarning("Registration number has been succefully entered.");
+            setTimeout(function () { warning.innerHTML = "" }, 5000);
         }
+    } else {
+        showErrors("Please enter registration number from towns given below.");
     }
-    else {
-        showErrors("Please enter valid registration number");
-    }
+
     textBox.value = "";
 })
 
@@ -68,8 +58,11 @@ showBtn.addEventListener("click", function () {
 });
 
 reset.addEventListener("click", function () {
-    // localStorage.clear();
+    storedRegNumbers = {};
+    localStorage.setItem("registrationSet", JSON.stringify(storedRegNumbers));
+  
     showWarning("Registration numbers have been succefully cleared.")
+
     localStorage.removeItem("registrationSet");
 
     let spanClear = document.querySelector(".regNumbers")
@@ -93,7 +86,7 @@ showAll.addEventListener('click', function () {
 
 function createSpan() {
     let newSpan = document.createElement("span");
-    newSpan.classList.add("liStyle");
+    newSpan.classList.add("liStyles");
     return newSpan;
 }
 function showAllReg() {
@@ -139,6 +132,7 @@ const displayRegElement1 = document.querySelector(".regNumbers1")
 const reset1 = document.querySelector('.reset1')
 const showAll1 = document.querySelector('.showAll1')
 
+
 const regTemplate = document.querySelector(".textTemplate").innerHTML;
 //compiled template
 let tempCompile = Handlebars.compile(regTemplate);
@@ -146,9 +140,7 @@ let tempCompile = Handlebars.compile(regTemplate);
 //
 let storedRegNumbers1 = localStorage["registrationSetTemp"] ? JSON.parse(localStorage.getItem("registrationSetTemp")) : {};
 
-let regArray1 = []
 let regInst1 = regFactory(storedRegNumbers1);
-let regex1 = /^([a-zA-Z]{2}\s(\d{5}$|\d{3}$))|^([a-zA-Z]{2}\s\d{3}(-\d{3}$|\s\d{3}$))/;
 
 window.addEventListener('load', (event) => {
     let filteredReg1 = regInst1.filterRegNumbers();
@@ -158,28 +150,22 @@ addBtn1.addEventListener("click", function () {
 
     let regNumber1 = textBox1.value;
     let lowerReg1 = regNumber1.toUpperCase();
-    // check regular expressions
-    if (regex1.test(lowerReg1)) {
-        // check towns and creating HTML tags and setting text in tags
-        if (lowerReg1.startsWith("CK") || lowerReg1.startsWith("CY") || lowerReg1.startsWith("CA")) {
 
-            regInst1.addRegNumbers(lowerReg1)
-            localStorage.setItem("registrationSetTemp", JSON.stringify(regInst1.newContainer()));
+    if (regInst1.addRegNumbers(lowerReg1)) {
+        
+        localStorage.setItem("registrationSetTemp", JSON.stringify(regInst1.newContainer()));
 
-            if (storedRegNumbers1[lowerReg1] > 0) {
-                showErrors1("Registration number already exists");
-            } else {
-                showAllReg1()
-                showWarning1("Registration number has been succefully entered.");
-                setTimeout(function () { warning1.innerHTML = "" }, 5000);
-            }
+        if (storedRegNumbers1[lowerReg1] > 0) {
+            showErrors1("Registration number already exists");
         } else {
-            showErrors1("Please enter registration number from towns given below.");
+            showAllReg1()
+            showWarning1("Registration number has been succefully entered.");
+            setTimeout(function () { warning1.innerHTML = "" }, 5000);
         }
+    } else {
+        showErrors1("Please enter registration number from towns given below.");
     }
-    else {
-        showErrors1("Please enter valid registration number");
-    }
+
     textBox1.value = "";
 })
 
@@ -201,15 +187,12 @@ showBtn1.addEventListener("click", function () {
 });
 
 reset1.addEventListener("click", function () {
-    // localStorage.clear();
+  localStorage.clear();
+
     showWarning1("Registration numbers have been succefully cleared.")
     localStorage.removeItem("registrationSetTemp");
 
-    let spanClear = document.querySelector(".regNumbers1")
-    let spanChild = spanClear.children
-    for (let i = (spanChild.length - 1); i >= 0; i--) {
-        spanClear.removeChild(spanChild[i]);
-    }
+    displayRegElement1.innerHTML = "";
 
     setTimeout(function () {
         warning1.innerHTML = "";
@@ -217,7 +200,7 @@ reset1.addEventListener("click", function () {
 })
 
 showAll1.addEventListener('click', function () {
-    if (regInst.regArrayList().length > 0) {
+    if (regInst1.regArrayList().length > 0) {
         showAllReg1();
     } else {
         showErrors1("No registration have yet been entered.");
@@ -231,6 +214,7 @@ function showAllReg1() {
 
 function displayReg1(filteredReg) {
     displayRegElement1.innerHTML = "";
+
     displayRegElement1.innerHTML = tempCompile({ regies: filteredReg });
 }
 

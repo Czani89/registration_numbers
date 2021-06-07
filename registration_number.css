@@ -26,11 +26,14 @@ h1{
 p{
     color: black;
     text-align: center;
-    background-color: yellow;
+    background-color: grey;
     border: .2rem solid black;
+    margin-bottom: 0;
 }
-.regFormat{
-    color: rgb(107, 104, 104);
+.regFormats{
+    /* color: rgb(107, 104, 104); */
+   justify-items: center;
+   margin-top: 0;
 }
 .inputText{
     margin: 2rem 0 1rem 0;
@@ -71,9 +74,7 @@ p{
     .error{
         color: green;
     }
-
-  
-    .liStyle{
+.liStyles{
         list-style: none;
         margin: auto;
         border: .3rem solid black;
@@ -82,6 +83,18 @@ p{
         width: 5rem;
         text-transform: uppercase;
         display: inline-block;
+        text-align: center;
+    }
+    .liStyle{
+        list-style: none;
+        margin: auto;
+        border: .2rem solid black;
+        border-radius: .3rem;
+        background-color: white;
+        width: 5rem;
+        text-transform: uppercase;
+        display: inline-block;
+        text-align: center;
     }
     /* overall container style */
     @media(max-width: 425px){
